@@ -567,10 +567,10 @@ app.put("/add-property/:_id", async (req, res) => {
         error: "Enter Home Price",
       });
     }
-    if (homePrice <= 5000 || homePrice >= 100000000) {
+    if (homePrice <= 1000 || homePrice >= 100000000) {
       return res.json({
         error:
-          "Home Price is out of range. Please provide a home price within the range of 50,001 to 99,999,999.",
+          "Home Price is out of range. Please provide a home price within the range of 1001 to 99,999,999.",
       });
     }
     if (!homeAddress) {

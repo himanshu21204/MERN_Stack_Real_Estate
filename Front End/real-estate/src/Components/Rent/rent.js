@@ -107,7 +107,7 @@ useEffect(() => {
                   </Link>
                 </h5>
                 <p className="card-text ">{f.homeAddress}</p>
-                <div>${f.homePrice}</div>
+                <div>${f.homePrice}/mo</div>
               </div>
               <ul className="list-group list-group-flush">
                 <li className="list-group-item">

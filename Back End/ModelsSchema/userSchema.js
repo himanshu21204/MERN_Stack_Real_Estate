@@ -18,7 +18,7 @@ const userSchema = new Schema({
     addresh:String,
     aboutBroker:String,
     isbroker:Boolean,
-    profilePhoto:String
+    profilePhoto:String,
 })
 
 const UserModel = mongoose.model('User',userSchema);

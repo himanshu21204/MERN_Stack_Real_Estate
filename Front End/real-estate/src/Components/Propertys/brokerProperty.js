@@ -108,7 +108,6 @@ const MyProperty = () => {
         );
       }
     });
-
     resultList = resultList.filter((f)=> f !== undefined)
     return (
         <>

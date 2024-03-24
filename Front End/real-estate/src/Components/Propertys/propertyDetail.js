@@ -87,7 +87,8 @@ const PropertyDetails = () => {
             <MdCircle /> For {data.homePropertyType}
           </div>
           <div className="col" style={{ textAlign: "right", fontSize: "25px" }}>
-            ${data.homePrice}
+            {data.homePropertyType=='Rent' &&  <div>${data.homePrice}/mo</div>}
+            {data.homePropertyType!=='Rent' &&  <div>${data.homePrice}</div>}
           </div>
         </div>
         <div className="row">
