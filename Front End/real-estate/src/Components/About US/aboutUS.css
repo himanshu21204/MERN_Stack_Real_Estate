@@ -1,0 +1,37 @@
+.bodyab{
+    padding: 50px 0 0 135px;
+}
+.aboutext{
+    font-family: "Roboto", sans-serif;
+    font-size: 30px;
+    font-weight: bolder;
+    padding: 50px 0 0 130px;
+}
+.text{
+    font-size: 30px;
+    margin: 8px 10px 8px 8px;
+    font-family: "Roboto", sans-serif;
+    font-weight: bolder;
+}
+.subtext{
+    margin: 8px 8px 8px 8px;
+    font-family: "Roboto", sans-serif;
+}
+.aboutimg{
+    border-radius: 10px;
+    height: 500px;
+    object-fit: fill;
+}
+.agentimg{
+    border-radius: 15px;
+    height: 210px;
+    object-fit: cover !important;
+}
+.agentimg:hover{
+    transform: scale(1.02);
+    transition: 0.5s all ease;
+}
+.agentname{
+    color: #000;
+    text-decoration: none !important;
+}
