@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./sell.css";
+import '../../progressBar.css'
 import { useState, useEffect } from "react";
 import axios from "axios";
 const Sell = () => {
@@ -392,7 +393,15 @@ useEffect(() => {
                   </button>
                 )}
               </div>
-              <div className="row">{result}</div>
+              <div>
+                {result.length === 0 ? (
+                  <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "50vh" }}>
+                    <progress class="pure-material-progress-circular" />
+                  </div>
+                ) : (
+                  <div className="row">{result}</div>
+                )}
+              </div>
             </div>
           ) : (
             <div className="col">
@@ -425,7 +434,15 @@ useEffect(() => {
                   </button>
                 )}
               </div>
-              <div className="row">{resultList}</div>
+              <div>
+                {result.length === 0 ? (
+                  <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "50vh" }}>
+                    <progress class="pure-material-progress-circular" />
+                  </div>
+                ) : (
+                  <div className="row">{resultList}</div>
+                )}
+              </div>
             </div>
           )}
         </div>

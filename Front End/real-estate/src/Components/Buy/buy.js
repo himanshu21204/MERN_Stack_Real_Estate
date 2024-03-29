@@ -2,13 +2,14 @@ import { Link } from "react-router-dom";
 import "./buy.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import '../../progressBar.css'
 
 const Buy = () => {
   const [isGrid, setIsGrid] = useState(true);
   const [sortBy, setSortBy] = useState("");
-  const [copydata,setCopyData] = useState([]);
+  const [copydata, setCopyData] = useState([]);
   const [selectedCity, setSelectedCity] = useState("");
-  const [selectedYear,setSelectedYear] = useState("")
+  const [selectedYear, setSelectedYear] = useState("")
   function gridTolist() {
     setIsGrid(!isGrid);
     setSortBy("");
@@ -39,8 +40,8 @@ const Buy = () => {
       } else if (sortBy === "alphabetical") {
         sortedData.sort((a, b) => a.homeTitle.localeCompare(b.title));
       } else if (sortBy === "city") {
-      sortedData.sort((a, b) => a.city.localeCompare(b.city));
-    }
+        sortedData.sort((a, b) => a.city.localeCompare(b.city));
+      }
       setBuyData(sortedData);
       setCopyData(sortedData)
     } catch (error) {
@@ -50,43 +51,43 @@ const Buy = () => {
 
   //Name
   const searchByName = (query) => {
-  const filteredData = query ? buyData.filter((property) => {
-    return property.homeTitle.toLowerCase().includes(query.toLowerCase());
-  }) : copydata; 
-  setBuyData(filteredData);
-};
+    const filteredData = query ? buyData.filter((property) => {
+      return property.homeTitle.toLowerCase().includes(query.toLowerCase());
+    }) : copydata;
+    setBuyData(filteredData);
+  };
   const handleNameSearch = (e) => {
     const query = e.target.value;
     searchByName(query);
   };
 
-// City
-const searchByCity = () => {
-  const filteredData = selectedCity ? copydata.filter((property) => {
-    return property.homeCity.toLowerCase() === selectedCity.toLowerCase();
-  }) : copydata;
-  setBuyData(filteredData);
-};
-const handleCityChange = (e) => {
-  setSelectedCity(e.target.value);
-};
-useEffect(() => {
-  searchByCity();
-}, [selectedCity]);
+  // City
+  const searchByCity = () => {
+    const filteredData = selectedCity ? copydata.filter((property) => {
+      return property.homeCity.toLowerCase() === selectedCity.toLowerCase();
+    }) : copydata;
+    setBuyData(filteredData);
+  };
+  const handleCityChange = (e) => {
+    setSelectedCity(e.target.value);
+  };
+  useEffect(() => {
+    searchByCity();
+  }, [selectedCity]);
 
-//Year
-const searchByYear = () => {
-  const filteredData = selectedYear ? copydata.filter((property) => {
-    return property.homeYearbuilt.toLowerCase() === selectedYear.toLowerCase();
-  }) : copydata;
-  setBuyData(filteredData);
-};
-const handleYearChange = (e) => {
-  setSelectedYear(e.target.value);
-};
-useEffect(() => {
-  searchByYear();
-}, [selectedYear]);
+  //Year
+  const searchByYear = () => {
+    const filteredData = selectedYear ? copydata.filter((property) => {
+      return property.homeYearbuilt.toLowerCase() === selectedYear.toLowerCase();
+    }) : copydata;
+    setBuyData(filteredData);
+  };
+  const handleYearChange = (e) => {
+    setSelectedYear(e.target.value);
+  };
+  useEffect(() => {
+    searchByYear();
+  }, [selectedYear]);
 
   const result = buyData.map((f) => {
     if (f.homePropertyType.toLowerCase() === "buy") {
@@ -274,6 +275,7 @@ useEffect(() => {
       );
     }
   });
+
   return (
     <>
       <div className="container back">
@@ -361,12 +363,12 @@ useEffect(() => {
                 <div>
                   <div className="searchtitle">Year Built</div>
                   <div className="row pb-3">
-                  <input
-                    type="text"
-                    className="form-control searchinput"
-                    placeholder="Search By Year"
-                    onChange={handleYearChange}
-                  ></input>
+                    <input
+                      type="text"
+                      className="form-control searchinput"
+                      placeholder="Search By Year"
+                      onChange={handleYearChange}
+                    ></input>
                   </div>
                 </div>
                 {/* <div className="card-body">
@@ -409,7 +411,15 @@ useEffect(() => {
                   </button>
                 )}
               </div>
-              <div className="row">{result}</div>
+              <div>
+                {result.length === 0 ? (
+                  <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "50vh" }}>
+                    <progress class="pure-material-progress-circular" />
+                  </div>
+                ) : (
+                  <div className="row">{result}</div>
+                )}
+              </div>
             </div>
           ) : (
             <div className="col">
@@ -446,7 +456,15 @@ useEffect(() => {
                   </button>
                 )}
               </div>
-              <div className="row">{resultList}</div>
+              <div>
+                {result.length === 0 ? (
+                  <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "50vh" }}>
+                    <progress class="pure-material-progress-circular" />
+                  </div>
+                ) : (
+                  <div className="row">{resultList}</div>
+                )}
+              </div>
             </div>
           )}
         </div>

@@ -60,13 +60,43 @@ const PropertyAdd = () => {
 
     return firstPart + randomNumber;
   };
+  // const handleFileUpload = async (e) => {
+  //   const files = e.target.files;
+  //   const newImages = await Promise.all(Array.from(files).map(async (file) => {
+  //     const base64 = await convertToBase64(file);
+  //     return base64;
+  //   }));
+  //   setPostImages([...newImages]);
+  // }
   const handleFileUpload = async (e) => {
     const files = e.target.files;
-    const newImages = await Promise.all(Array.from(files).map(async (file) => {
-      const base64 = await convertToBase64(file);
-      return base64;
-    }));
-    setPostImages([...newImages]);
+    const uploadedPhotoUrls = [];
+
+    console.log("Images uploading...");
+  
+    for (const file of files) {
+      const formData = new FormData();
+      formData.append('image', file);
+  
+      try {
+        const response = await fetch("https://api.imgbb.com/1/upload?key=e2db45c90e4166baf8ef10e07f056af7", {
+          method: 'POST',
+          body: formData
+        });
+  
+        if (!response.ok) {
+          throw new Error('Failed to upload image');
+        }
+  
+        const data = await response.json();
+        const photoUrl = data.data.display_url;
+        console.log("Uploaded photo URL:", photoUrl);
+        uploadedPhotoUrls.push(photoUrl);
+      } catch (error) {
+        console.error("Error uploading image:", error);
+      }  
+    }
+    setPostImages(uploadedPhotoUrls);
   }
   const propertyAdd = async (e) => {
     e.preventDefault();

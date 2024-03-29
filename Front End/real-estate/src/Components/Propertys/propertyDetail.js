@@ -51,6 +51,43 @@ const PropertyDetails = () => {
     });
   };
 
+  const contactAgent = () => {
+    if(!isLogin){
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "First Login!",
+      })
+    } else {
+      Swal.fire({
+        title: 'Contact Agent',
+        html:
+        '<input id="swal-input1" class="swal2-input" placeholder="Your Name">' +
+        '<input id="swal-input2" class="swal2-input" placeholder="Your Email">' +
+        '<textarea id="swal-input3" class="swal2-textarea" placeholder="Your Message"></textarea>',
+        focusConfirm: false,
+        showCancelButton: true,
+        confirmButtonText: 'Submit',
+        cancelButtonText: 'Cancel',
+        preConfirm: () => {
+            return [
+                document.getElementById('swal-input1').value,
+                document.getElementById('swal-input2').value,
+                document.getElementById('swal-input3').value
+            ];
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const [name, email, message] = result.value;
+            console.log("Name: " + name);
+            console.log("Email: " + email);
+            console.log("Message: " + message);
+        }
+    });
+
+    }
+  }
+
   // console.log(data)
   return (
     <>
@@ -77,8 +114,8 @@ const PropertyDetails = () => {
           ) : (
             <div className="col"></div>
           )}
-          {isLogin && !(data.brokerID == brokerID) && (
-            <div className="col btn btn-primary">Contact Agent</div>
+          {!(data.brokerID == brokerID) && (
+            <div className="col btn btn-primary" onClick={contactAgent}>Contact Agent</div>
           )}
         </div>
         <div className="row mt-3">

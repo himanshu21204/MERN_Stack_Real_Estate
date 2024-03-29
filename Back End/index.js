@@ -548,7 +548,9 @@ app.put("/add-property/:_id", async (req, res) => {
       homePropertyType,
       homePropertyID,
       homePropertyStatus,
+      photos,
       brokerID,
+
     } = req.body;
 
     // Check if user Exist
@@ -684,6 +686,7 @@ app.put("/add-property/:_id", async (req, res) => {
         homePropertyID,
         homePropertyStatus,
         brokerID,
+        photos
       },
       { new: true }
     );

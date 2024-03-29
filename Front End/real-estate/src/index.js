@@ -23,6 +23,7 @@ import PropertyDetails from './Components/Propertys/propertyDetail';
 import EditProfile from './Components/EditFile/EditProfile';
 import MyProperty from './Components/Propertys/brokerProperty';
 import { UserContextProvider } from './context/userContext.js';
+import Protected from './Protected.js';
 
 
 axios.defaults.baseURL = 'http://localhost:8000';
@@ -38,7 +39,7 @@ root.render(
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register/>}/>
         <Route path='/' element={<Layout/>}>
-          <Route path='' element={<Home/>}></Route>
+          <Route index element={<Home/>}></Route>
           <Route path='/buy' element={<Buy/>}></Route>
           <Route path='/rent' element={<Rent/>}></Route>
           <Route path='/sell' element={<Sell/>}></Route>
@@ -48,12 +49,12 @@ root.render(
           <Route path='/faq' element={<FAQ/>}></Route>
           <Route path='/profile' element={<Profile/>}> </Route>
           <Route path='/agentdetail/:_id' element={<AgentDetail/>}> </Route>
-          <Route path='/add-property' element={<PropertyAdd/>}> </Route>
+          <Route path='/add-property' element={<Protected Component={PropertyAdd}/>}> </Route>
           <Route path='/add-property/:_id' element={<PropertyAdd/>}> </Route>
-          <Route path='/broker-fetch' element={<FetchBroker/>}> </Route>
+          <Route path='/broker-fetch' element={<Protected Component={FetchBroker}/>}> </Route>
           <Route path='/property-detail/:_id' element={<PropertyDetails/>}> </Route>
           <Route path='/editProfile/:_id' element={<EditProfile/>}> </Route>
-          <Route path='/myProperty' element={<MyProperty/>}> </Route>
+          <Route path='/myProperty' element={<Protected Component={MyProperty}/>}> </Route>
         </Route>
       </Routes>
     </BrowserRouter>
